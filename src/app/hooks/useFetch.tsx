@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { DataFetch } from '../types';
-import { Url } from 'next/dist/shared/lib/router/router';
 
 const useFetch = (url: string) => {
     const [data, setData] = useState<DataFetch>();

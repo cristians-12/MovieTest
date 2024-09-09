@@ -5,7 +5,7 @@ const useSearch = () => {
     const [query, setQuery] = useState()
     const { setUrl } = useContext(MovieContext);
 
-    const handleSearch = (e) => {
+    const handleSearch = () => {
         setUrl(`https://api.themoviedb.org/3/search/movie?query=${query}`)
     }
     const handleQuery = (e) => {
