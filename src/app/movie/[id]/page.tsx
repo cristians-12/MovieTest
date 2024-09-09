@@ -47,7 +47,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
                         </div>
                         <div className="flex justify-center">
                             {
-                                movie.genres.map((e) => (
+                                movie.genres.map((e: { id: number; name: string }) => (
                                     <div key={e.id} className="mr-2 border border-yellow-500 px-3 py-1 rounded-lg text-yellow-500">{e.name}</div>
                                 ))
                             }
