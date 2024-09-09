@@ -5,7 +5,7 @@ import MovieCard from './includes/MovieCard';
 export default function MovieList({ data }: { data: DataFetch }) {
     return (
         <main>
-            <div className='flex flex-wrap gap-10 justify-center lg:overflow-x-auto lg:pb-20'>
+            <div className='flex flex-wrap gap-10 justify-center lg:overflow-x-auto lg:py-16'>
                 {data.results.length > 1 ? data.results.map(e => (
                     <MovieCard key={e.id} e={e} />
                 )) : (
