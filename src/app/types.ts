@@ -1,6 +1,7 @@
 export interface DataFetch {
   pages: number;
   results: Movie[];
+  total_pages:number;
 }
 
 export interface Movie {

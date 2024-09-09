@@ -1,14 +1,15 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MovieList from './components/MovieList';
 import useFetch from './hooks/useFetch'
 import MainLayout from './layouts/MainLayout';
+import Paginator from './components/Paginator';
+import usePaginator from './hooks/usePaginator';
+import { parametersUrl } from './utils/constants';
 
 export default function Home() {
-
-
-  const [page, setPage] = useState(1);
-  const { data } = useFetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`);
+  const { page, avanzar, retroceder } = usePaginator();
+  const { data } = useFetch(`https://api.themoviedb.org/3/${parametersUrl}${page}`);
 
   if (!data) {
     return <div>Loading...</div>;
@@ -17,11 +18,10 @@ export default function Home() {
   return (
     <>
       <MainLayout>
+      <Paginator page={page} avanzar={avanzar} retroceder={retroceder} />
+        <h1 className='text-[40px] my-10'>Popular</h1>
         <MovieList data={data} />
-        <div className='flex justify-center gap-5'>
-          <div onClick={()=>setPage(1)} className='bg-black p-3'>1</div>
-          <div className='bg-black p-3' onClick={()=>setPage(2)}>2</div>
-        </div>
+        <Paginator page={page} avanzar={avanzar} retroceder={retroceder} />
       </MainLayout>
     </>
   )

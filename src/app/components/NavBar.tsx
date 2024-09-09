@@ -9,10 +9,10 @@ export default function NavBar() {
                     <Link href={'/'} className="font-extrabold cursor-pointer">
                         <Image width={200} height={100} alt="logo" src={'/images/logo.png'} />
                     </Link>
-                    <div className="cursor-pointer">
+                    <div className="cursor-pointer lg:block hidden">
                         Popular
                     </div>
-                    <div className="cursor-pointer">
+                    <div className="cursor-pointer lg:block hidden">
                         Favorites
                     </div>
                 </div>
