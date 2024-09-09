@@ -9,7 +9,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #3f3d3d;
     --foreground: #ededed;
   }
 }
@@ -24,4 +24,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+*{
+  transition: all ease-in-out 0.15s;
 }
