@@ -1,7 +1,5 @@
 import React from 'react'
-import Image from 'next/image';
 import { DataFetch } from '../types';
-import { imageLink } from '../utils/constants';
 import MovieCard from './includes/MovieCard';
 
 export default function MovieList({ data }: { data: DataFetch }) {
