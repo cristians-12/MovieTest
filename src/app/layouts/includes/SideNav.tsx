@@ -1,6 +1,6 @@
-import { MovieContext } from '@/app/context/MovieContext';
+
 import useSearch from '@/app/hooks/useSearch';
-import React, { useContext, useState } from 'react'
+
 import { FaSearch } from "react-icons/fa";
 
 export default function SideNav() {

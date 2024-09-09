@@ -1,6 +1,6 @@
 import React from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import usePaginator from '../hooks/usePaginator';
+// import usePaginator from '../hooks/usePaginator';
 
 
 interface PaginatorProps {

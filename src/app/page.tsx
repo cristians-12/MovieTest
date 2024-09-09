@@ -1,5 +1,5 @@
 'use client'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import MovieList from './components/MovieList';
 import useFetch from './hooks/useFetch'
 import MainLayout from './layouts/MainLayout';
@@ -10,7 +10,7 @@ import { MovieContext } from './context/MovieContext';
 export default function Home() {
   const { page, avanzar, retroceder } = usePaginator();
 
-  const {url} = useContext(MovieContext)
+  const { url } = useContext(MovieContext)
 
   const { data } = useFetch(`${url}&page=${page}`);
 
