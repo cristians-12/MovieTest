@@ -14,4 +14,9 @@ export interface Movie {
   vote_average:number;
 }
 
+export interface Tags {
+  id: number;
+  tag: string;
+}
+
 

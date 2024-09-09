@@ -7,7 +7,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <div className='mb-5 mt-20'>
             <NavBar />
             <SideNav/>
-            <div className='ps-[22%]'>
+            <div className='lg:ps-[22%]'>
                 {children}
             </div>
         </div>

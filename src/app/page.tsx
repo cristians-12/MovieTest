@@ -10,7 +10,7 @@ import { MovieContext } from './context/MovieContext';
 export default function Home() {
   const { page, avanzar, retroceder } = usePaginator();
 
-  const { url } = useContext(MovieContext)
+  const { url, tag } = useContext(MovieContext)
 
   const { data } = useFetch(`${url}&page=${page}`);
 
@@ -21,10 +21,10 @@ export default function Home() {
   return (
     <>
       <MainLayout>
-        <Paginator page={page} avanzar={avanzar} retroceder={retroceder} />
-        <h1 className='text-[40px] my-10'>Popular</h1>
+        <Paginator pages={data.total_pages} page={page} avanzar={avanzar} retroceder={retroceder} />
+        <h1 className='text-[40px] my-10'>{tag}</h1>
         <MovieList data={data} />
-        <Paginator page={page} avanzar={avanzar} retroceder={retroceder} />
+        <Paginator page={page} pages={data.total_pages} avanzar={avanzar} retroceder={retroceder} />
       </MainLayout>
     </>
   )

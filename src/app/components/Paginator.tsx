@@ -5,11 +5,12 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 interface PaginatorProps {
     page: number;
-    avanzar: ()=>void;
-    retroceder: ()=>void;
+    avanzar: () => void;
+    retroceder: () => void;
+    pages: number;
 }
 
-const Paginator: React.FC<PaginatorProps> = ({page, avanzar, retroceder}) => {
+const Paginator: React.FC<PaginatorProps> = ({ page, avanzar, pages, retroceder }) => {
 
     // const { avanzar, retroceder, page } = usePaginator()
 
@@ -21,9 +22,9 @@ const Paginator: React.FC<PaginatorProps> = ({page, avanzar, retroceder}) => {
                 ) :
                     null}
                 <div className='bg-black py-2 px-4'>{page}</div>
-                <div onClick={avanzar} className='bg-black p-3 cursor-pointer'>
+                {pages != 1 ? (<div onClick={avanzar} className='bg-black p-3 cursor-pointer'>
                     <IoIosArrowForward />
-                </div>
+                </div>) : (null)}
             </div>
         </div>
     )
