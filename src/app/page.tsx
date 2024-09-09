@@ -1,11 +1,11 @@
 'use client'
-import React, { useContext } from 'react'
+import React from 'react'
 import MovieList from './components/MovieList';
 import useFetch from './hooks/useFetch'
 import MainLayout from './layouts/MainLayout';
 import Paginator from './components/Paginator';
 import usePaginator from './hooks/usePaginator';
-import {  useMovieContext } from './context/MovieContext';
+import { useMovieContext } from './context/MovieContext';
 
 export default function Home() {
   const { page, avanzar, retroceder } = usePaginator();
