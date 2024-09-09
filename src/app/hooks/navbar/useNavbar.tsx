@@ -1,10 +1,10 @@
-import { MovieContext } from "@/app/context/MovieContext"
-import { useContext, useState } from "react"
+import { useMovieContext } from "@/app/context/MovieContext"
+import { useState } from "react"
 
 const useNavbar = () => {
 
     const [pop, setPop] = useState(false)
-    const {setUrl, setTag} = useContext(MovieContext)
+    const {setUrl, setTag} = useMovieContext()
 
     const handlePop = () => {
         setPop(!pop)

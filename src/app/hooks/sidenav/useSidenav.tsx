@@ -1,11 +1,11 @@
-import { MovieContext } from '@/app/context/MovieContext';
-import { useContext, useState } from 'react'
+import { useMovieContext } from '@/app/context/MovieContext';
+import { useState } from 'react'
 
 const useSidenav = () => {
 
     const [visible, setVisible] = useState(false);
 
-    const {setTag, setUrl} = useContext(MovieContext)
+    const {setTag, setUrl} = useMovieContext()
 
     const handleVisibility = () => {
         setVisible(!visible);

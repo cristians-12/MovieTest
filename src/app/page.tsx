@@ -5,12 +5,12 @@ import useFetch from './hooks/useFetch'
 import MainLayout from './layouts/MainLayout';
 import Paginator from './components/Paginator';
 import usePaginator from './hooks/usePaginator';
-import { MovieContext } from './context/MovieContext';
+import {  useMovieContext } from './context/MovieContext';
 
 export default function Home() {
   const { page, avanzar, retroceder } = usePaginator();
 
-  const { url, tag } = useContext(MovieContext)
+  const { url, tag } = useMovieContext()
 
   const { data } = useFetch(`${url}&page=${page}`);
 

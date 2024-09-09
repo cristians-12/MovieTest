@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react'
-import { MovieContext } from '../context/MovieContext';
+import { useState } from 'react'
+import { useMovieContext } from '../context/MovieContext';
 
 const useSearch = () => {
     const [query, setQuery] = useState()
-    const { setUrl, setTag } = useContext(MovieContext);
+    const { setUrl, setTag } = useMovieContext();
 
     const handleSearch = () => {
         setUrl(`https://api.themoviedb.org/3/search/movie?query=${query}`)
