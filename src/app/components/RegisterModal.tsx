@@ -13,8 +13,8 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ handlePop }) => {
 
     return (
         <div className='fixed flex z-50 w-screen h-screen'>
-            <div className='fixed ps-32 flex top-52 right-40 backdrop-blur-sm w-[55vw] rounded-3xl h-[50vh] border border-white'>
-                <div className='h-full w-[35%] flex flex-col items-center'>
+            <div className='fixed lg:ps-32 flex flex-col lg:flex-row lg:top-52 lg:right-40 backdrop-blur-sm lg:w-[55vw] h-[80vh] w-screen rounded-3xl lg:h-[50vh] border border-white'>
+                <div className='h-full lg:w-[35%] flex flex-col items-center'>
                     <div className='flex bg-gray-500 rounded-md  mt-10 font-bold'>
                         <div onClick={() => setActive(!active)} className={`px-7 py-3 rounded-md cursor-pointer  ${active ? 'bg-[#F0B90B]' : ''}`}>
                             Sign Up
@@ -51,15 +51,15 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ handlePop }) => {
                     </div>
                 </div>
 
-                <div className='absolute px-10 flex flex-col items-center justify-center bg-black right-0 w-[50%] top-0 rounded-tr-3xl rounded-br-3xl h-full'>
+                <div className='lg:absolute lg:px-10 flex flex-col items-center justify-center bg-black right-0 h-full rounded-b-3xl lg:w-[50%] top-0 rounded-tr-3xl rounded-br-3xl'>
                     <div className='flex'>
                         <p className='text-[40px] text-center font-bold mt-10'>🎥 Welcome to Quickbet Movies! </p>
                         <div className='cursor-pointer' onClick={handlePop}>
-                            <IoMdClose size={40} />
+                            <IoMdClose className='absolute lg:block top-0 right-0 ' size={40} />
                         </div>
                     </div>
                     <p className='text-center mt-10 mb-10'>Ready to unlock a universe of cinematic delights?</p>
-                    <Image width={200} height={100} alt='svg' src={'/images/register.svg'} />
+                    <Image className='hidden lg:block' width={200} height={100} alt='svg' src={'/images/register.svg'} />
                 </div>
             </div>
         </div>
