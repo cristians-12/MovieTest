@@ -22,7 +22,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
 
     return (
         <div className="lg:pt-[3.5%] pt-12">
-            <div className="relative lg:overflow-y-hidden lg:h-[65vh] h-screen">
+            <div className="relative lg:overflow-y-hidden lg:h-[65vh] h-[140vh]">
                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent z-20"></div>
 
                 <div className="lg:flex gap-10 h-full absolute top-0 z-30 px-10 backdrop-blur-md pt-5 w-full">
@@ -32,20 +32,20 @@ export default async function MoviePage({ params }: MoviePageProps) {
                             Official trailer
                         </div>
                     </div>
-                    <div className="lg:w-[70%] w-[90%]">
+                    <div className="lg:w-[70%] w-full">
                         <h1 className="text-[40px] font-bold">{movie.title}</h1>
                         <div>
                             <p>
                                 {movie.release_date}
                             </p>
                         </div>
-                        <h2 className="text-[25px] font-bold my-10">Overview:</h2>
+                        <h2 className="text-[25px] font-bold lg:my-10">Overview:</h2>
                         <p>{movie.overview}</p>
                         <div className="flex items-center font-extrabold">
                             <CircleProgress score={movie.vote_average} width={150} />
                             <span>Users Score</span>
                         </div>
-                        <div className="flex justify-center">
+                        <div className="flex justify-center overflow-x-scroll lg:overflow-auto">
                             {
                                 movie.genres.map((e: { id: number; name: string }) => (
                                     <div key={e.id} className="mr-2 border border-yellow-500 px-3 py-1 rounded-lg text-yellow-500">{e.name}</div>
@@ -59,7 +59,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
                     <Image className="object-contain w-full h-full" width={300} alt="Movie Image" height={300} src={`${imageLink + movie.backdrop_path}`} />
                 </div>
             </div>
-            <h3 className="text-[30px] mt-5">Recommendations:</h3>
+            <h3 className="text-[30px] mt-10 lg:mt-10">Recommendations:</h3>
         </div>
     );
 }

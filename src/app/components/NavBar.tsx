@@ -10,7 +10,7 @@ export default function NavBar() {
 
     return (
         <>
-            <nav className="flex lg:py-2 lg:px-32 fixed z-30 justify-between items-center w-screen top-0 bg-black">
+            <nav className="flex lg:py-2 lg:px-32 fixed z-40 justify-between items-center w-screen top-0 bg-black">
                 <div className="flex gap-10 items-center">
                     <Link href={'/'} className="font-extrabold cursor-pointer">
                         <Image width={200} height={100} alt="logo" src={'/images/logo.png'} />
