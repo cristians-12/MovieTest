@@ -3,7 +3,11 @@ import React, { useState } from 'react'
 import { MdLocalMovies } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 
-const RegisterModal = ({ handlePop }: any) => {
+interface RegisterModalProps {
+    handlePop: () => void;
+}
+
+const RegisterModal: React.FC<RegisterModalProps> = ({ handlePop }) => {
 
     const [active, setActive] = useState(false)
 
