@@ -1,11 +1,11 @@
 'use client'
-import React, { createContext, useState} from 'react';
+import React, { createContext, useState, SetStateAction, Dispatch } from 'react';
 
 interface MovieContextType {
     url: string;
-    setUrl: ()=>void;
-    tag:string;
-    setTag: ()=>void;
+    setUrl: Dispatch<SetStateAction<string>>;
+    tag: string;
+    setTag: Dispatch<SetStateAction<string>>;
 }
 
 export const MovieContext = createContext<MovieContextType | undefined>(undefined);
