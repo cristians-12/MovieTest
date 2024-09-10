@@ -2,7 +2,7 @@ import { Movie } from '@/app/types';
 import { imageLink } from '@/app/utils/constants';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import CircleProgress from '../CircleProgress';
 import { useAuthContext } from '@/app/context/AuthContext';
 import { FaHeart } from "react-icons/fa";
@@ -28,10 +28,6 @@ const handleAddFavorite = async (movieId: number, id: string) => {
         console.error('Error adding favorite:', error);
     }
 };
-
-
-
-
 
 const MovieCard = ({ e }: { e: Movie }) => {
     const { isAuthenticated, user } = useAuthContext();
