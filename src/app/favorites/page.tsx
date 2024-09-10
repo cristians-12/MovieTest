@@ -43,7 +43,7 @@ export default function Favorites() {
 
         const intervalId = setInterval(() => {
             fetchData();
-        }, 3000);
+        }, 2000);
         return () => clearInterval(intervalId);
     }, []);
 
