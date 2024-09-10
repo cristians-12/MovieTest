@@ -15,3 +15,21 @@ export const tags: Tags[] = [
   { id: 27, tag: "Terror" },
   { id: 878, tag: "Sci-fi" },
 ];
+
+export const fetchOptions = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  credentials: "include",
+  body: JSON.stringify({
+    // email: email,
+    // password: pass,
+  }),
+};
+
+export const headersFetch = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};

@@ -4,9 +4,12 @@ import Link from "next/link";
 import { FaRegUserCircle } from "react-icons/fa";
 import RegisterModal from "./RegisterModal";
 import useNavbar from "../hooks/navbar/useNavbar";
+import { useAuthContext } from "../context/AuthContext";
 export default function NavBar() {
 
     const { handlePop, pop, handlePopular } = useNavbar();
+
+    const { isAuthenticated, logOut, user } = useAuthContext();
 
     return (
         <>
@@ -18,12 +21,23 @@ export default function NavBar() {
                     <div onClick={handlePopular} className="cursor-pointer lg:block hidden">
                         Popular
                     </div>
-                    <Link href={'/favorites'} className="cursor-pointer lg:block hidden">
+                    {isAuthenticated ? (<Link href={'/favorites'} className="cursor-pointer lg:block hidden">
                         Favorites
-                    </Link>
+                    </Link>) : null}
                 </div>
-                <div onClick={handlePop} className="cursor-pointer">
-                    <FaRegUserCircle size={40} />
+                <div className="cursor-pointer">
+                    {isAuthenticated ? (
+                        <div className="flex gap-5">
+                            <Link href={`/profile/${user?._id}`} className="font-bold">Profile</Link>
+                            <div onClick={logOut}>
+                                Logout
+                            </div>
+                        </div>
+                    )
+                        :
+                        (<div onClick={handlePop}>
+                            <FaRegUserCircle size={40} />
+                        </div>)}
                 </div>
 
             </nav>

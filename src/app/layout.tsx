@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import { MovieProvider } from "./context/MovieContext";
+import { AuthProvider } from "./context/AuthContext";
+import { Toaster } from "react-hot-toast";
 
 
 const geistSans = localFont({
@@ -31,10 +33,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <MovieProvider>
-          <NavBar />
-          {children}
-        </MovieProvider>
+        <AuthProvider>
+          <MovieProvider>
+            <Toaster/>
+            <NavBar />
+            {children}
+          </MovieProvider>
+        </AuthProvider>
 
       </body>
     </html>
