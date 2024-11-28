@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { MovieProvider } from "./context/MovieContext";
 import { AuthProvider } from "./context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import NavBar from "@/components/NavBar";
@@ -33,11 +32,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-          <MovieProvider>
-            <Toaster />
-            <NavBar />
-            {children}
-          </MovieProvider>
+          <Toaster />
+          <NavBar />
+          {children}
         </AuthProvider>
       </body>
     </html>

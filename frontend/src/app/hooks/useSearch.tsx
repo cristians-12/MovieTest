@@ -1,31 +1,33 @@
-import { useState } from 'react'
-import { useMovieContext } from '../context/MovieContext';
+import useAppStore from "@/store/appStore";
+import { useState } from "react";
 
 const useSearch = () => {
-  const [query, setQuery] = useState<string>('')
-  const { setUrl, setTag } = useMovieContext();
+  const [query, setQuery] = useState<string>("");
+  const { changeUrl, changeGenre, genre } = useAppStore();
 
   const handleSearch = () => {
-    setUrl(`https://api.themoviedb.org/3/search/movie?query=${query}`)
-    setTag(query)
-  }
+    changeUrl(`https://api.themoviedb.org/3/search/movie?query=${query}`);
+    changeGenre({ ...genre, tag: query });
+  };
   const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value)
-  }
+    if (e.target.value == "" || e.target.value.trim == null) {
+      changeUrl(`https://api.themoviedb.org/3/movie/popular?language=en-US`);
+    } else {
+      setQuery(e.target.value);
+    }
+  };
 
   const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key == 'Enter') {
-      handleSearch()
+    if (e.key == "Enter") {
+      handleSearch();
     }
-  }
+  };
 
-  return (
-    {
-      handleQuery,
-      handleSearch,
-      handleKeydown
-    }
-  )
-}
+  return {
+    handleQuery,
+    handleSearch,
+    handleKeydown,
+  };
+};
 
-export default useSearch
+export default useSearch;
