@@ -1,9 +1,9 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from "react"
-import { AuthContextType, User } from "../types"
 import Cookies from 'js-cookie'
 import useToast from "../hooks/toast/useToast";
+import { AuthContextType, User } from "@/types/user/user.type";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 

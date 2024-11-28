@@ -12,7 +12,7 @@ const useSidenav = () => {
   };
 
   const handleTag = (genre: Genre) => {
-    changeGenre(genre.tag);
+    changeGenre(genre);
     changeUrl(
       `https://api.themoviedb.org/3/discover/movie?with_genres=${genre.id}`
     );

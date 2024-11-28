@@ -15,7 +15,7 @@ const useAppStore = create<App>()((set) => ({
   page: 1,
   nextPage: () => set((state) => ({ page: state.page + 1 })),
   prevPage: () => set((state) => ({ page: state.page - 1 })),
-  genre: { id: 10, tag: "Popular" },
+  genre: { id: 10, tag: "popular" },
   changeGenre: (newGenre) => set(() => ({ genre: newGenre })),
   // url: "https://api.themoviedb.org/3/discover/movie?language=en-US&page=1&sort_by=popularity.desc",
   url: "https://api.themoviedb.org/3/movie/popular?language=en-US",

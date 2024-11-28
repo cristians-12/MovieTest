@@ -38,11 +38,11 @@ export default function SideNav() {
         </div>
         <p className="mt-5 lg:text-[1.1vw]">Genres</p>
         <div className="bg-gray-900">
-          {tags.map((e) => (
+          {tags.map((e, index) => (
             <div
               onClick={() => handleTag(e)}
               className="cursor-pointer w-full hover:bg-slate-600 p-3"
-              key={e.id}
+              key={index}
             >
               {e.tag}
             </div>

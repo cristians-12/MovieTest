@@ -1,9 +1,10 @@
-import { Tags } from "@/types/movie/movie.type";
+import { Genre } from "@/types/movie/movie.type";
+
 
 export const imageLink: string = "https://image.tmdb.org/t/p/w500/";
 export const parametersUrl: string = "movie/popular?language=en-US&page=";
 
-export const tags: Tags[] = [
+export const tags: Genre[] = [
   { id: 28, tag: "Action" },
   { id: 12, tag: "Adventure" },
   { id: 16, tag: "Animation" },
