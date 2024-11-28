@@ -5,7 +5,7 @@ import { useState } from "react";
 const useSidenav = () => {
   const [visible, setVisible] = useState(false);
 
-  const { changeUrl, changeGenre } = useAppStore();
+  const { changeUrl, changeGenre, initialPage } = useAppStore();
 
   const handleVisibility = () => {
     setVisible(!visible);
@@ -13,6 +13,7 @@ const useSidenav = () => {
 
   const handleTag = (genre: Genre) => {
     changeGenre(genre);
+    initialPage();
     changeUrl(
       `https://api.themoviedb.org/3/discover/movie?with_genres=${genre.id}`
     );
