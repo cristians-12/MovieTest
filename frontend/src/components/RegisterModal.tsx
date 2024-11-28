@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { MdLocalMovies } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
-import useRegister from '../hooks/auth/useRegister';
+import useRegister from '@/app/hooks/auth/useRegister';
 
 interface RegisterModalProps {
     handlePop: () => void;

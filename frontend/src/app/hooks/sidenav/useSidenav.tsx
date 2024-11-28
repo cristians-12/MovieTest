@@ -1,28 +1,28 @@
-import { useMovieContext } from '@/app/context/MovieContext';
-import { useState } from 'react'
+import useAppStore from "@/store/appStore";
+import { Genre } from "@/types/movie/movie.type";
+import { useState } from "react";
 
 const useSidenav = () => {
+  const [visible, setVisible] = useState(false);
 
-    const [visible, setVisible] = useState(false);
+  const { changeUrl, changeGenre } = useAppStore();
 
-    const {setTag, setUrl} = useMovieContext()
+  const handleVisibility = () => {
+    setVisible(!visible);
+  };
 
-    const handleVisibility = () => {
-        setVisible(!visible);
-    }
+  const handleTag = (genre: Genre) => {
+    changeGenre(genre.tag);
+    changeUrl(
+      `https://api.themoviedb.org/3/discover/movie?with_genres=${genre.id}`
+    );
+  };
 
-    const handleTag = (id: number, tag:string) => {
-        setTag(tag)
-        setUrl(`https://api.themoviedb.org/3/discover/movie?with_genres=${id}`)
-    }
+  return {
+    visible,
+    handleVisibility,
+    handleTag,
+  };
+};
 
-    return (
-        {
-            visible,
-            handleVisibility,
-            handleTag
-        }
-    )
-}
-
-export default useSidenav
+export default useSidenav;

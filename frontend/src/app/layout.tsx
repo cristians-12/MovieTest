@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import NavBar from "./components/NavBar";
 import { MovieProvider } from "./context/MovieContext";
 import { AuthProvider } from "./context/AuthContext";
 import { Toaster } from "react-hot-toast";
-
+import NavBar from "@/components/NavBar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,12 +34,11 @@ export default function RootLayout({
       >
         <AuthProvider>
           <MovieProvider>
-            <Toaster/>
+            <Toaster />
             <NavBar />
             {children}
           </MovieProvider>
         </AuthProvider>
-
       </body>
     </html>
   );
