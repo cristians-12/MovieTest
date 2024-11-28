@@ -1,5 +1,6 @@
 import CircleProgress from "@/components/CircleProgress";
 import { fetchMovie } from "@/components/server/useFetching";
+import { Genre } from "@/types/movie/movie.type";
 import { imageLink } from "@/utils/constants";
 import Image from "next/image";
 
@@ -48,7 +49,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
               <span className="ml-4 text-lg">Users Score</span>
             </div>
             <div className="flex justify-center overflow-x-scroll lg:overflow-auto mt-6 space-x-2">
-              {movie.genres.map((e) => (
+              {movie.genres.map((e: Genre) => (
                 <div
                   key={e.id}
                   className="border border-yellow-500 cursor-pointer px-3 py-1 rounded-lg text-yellow-500 text-sm lg:text-base"
