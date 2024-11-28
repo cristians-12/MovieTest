@@ -17,6 +17,7 @@ const useSidenav = () => {
     changeUrl(
       `https://api.themoviedb.org/3/discover/movie?with_genres=${genre.id}`
     );
+    setVisible(!visible);
   };
 
   return {
