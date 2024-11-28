@@ -1,6 +1,6 @@
 'use client';
+import { DataFetch } from '@/types/movie/movie.type';
 import { useState, useEffect } from 'react';
-import { DataFetch } from '../types';
 
 const useFetch = (url: string) => {
     const [data, setData] = useState<DataFetch>();
