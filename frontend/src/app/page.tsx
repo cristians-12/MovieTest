@@ -1,27 +1,17 @@
-"use client";
-import React from "react";
-import useFetch from "./hooks/useFetch";
-import MainLayout from "./layouts/MainLayout";
-import Paginator from "@/components/Paginator";
-import MovieList from "@/components/MovieList";
-import useAppStore from "@/store/appStore";
+import MainContainer from "@/components/main-container";
+import { headers } from "next/headers";
 
-export default function Home() {
-  const { page, url, genre } = useAppStore();
-  const { data } = useFetch(`${url}&page=${page}`);
+export default async function Home() {
+  const headersList = headers();
+  const host = headersList.get("host");
 
-  if (!data) {
-    return <div>Loading...</div>;
-  }
+  const res = await fetch(`http://${host}/api/movie`, {
+    cache: "no-store",
+  });
 
-  return (
-    <>
-      <MainLayout>
-        <Paginator pages={data.total_pages} />
-        <h1 className="text-[40px] my-10">Resultados para {genre.tag}</h1>
-        <MovieList data={data} />
-        <Paginator pages={data.total_pages} />
-      </MainLayout>
-    </>
-  );
+  const data = await res.json();
+
+  console.log(data);
+
+  return <MainContainer data={data} />;
 }
