@@ -3,9 +3,10 @@
 import MainLayout from "@/app/layouts/MainLayout";
 import Paginator from "./Paginator";
 import MovieList from "./MovieList";
+import { MoviesResponse, MovieType } from "@/types/movie/movie.type";
 
 interface Props {
-    data: any;
+    data:MoviesResponse;
 }
 
 export default function MainContainer({ data }: Props) {

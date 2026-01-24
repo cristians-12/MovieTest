@@ -1,21 +1,35 @@
 export interface DataFetch {
   pages: number;
-  results: Movie[];
+  results: MovieType[];
   total_pages: number;
 }
 
-export interface Movie {
+export type MovieType = {
+  adult: boolean;
+  backdrop_path: string | null;
+  genre_ids: number[];
   id: number;
+  original_language: string;
   original_title: string;
   overview: string;
-  title: string;
-  poster_path: string;
+  popularity: number;
+  poster_path: string | null;
   release_date: string;
+  title: string;
+  video: boolean;
   vote_average: number;
-}
+  vote_count: number;
+};
 
 export interface Genre {
   id: number;
   tag: string;
   name?: string;
 }
+
+export type MoviesResponse = {
+  page: number;
+  results: MovieType[];
+  total_pages: number;
+  total_results: number;
+};
