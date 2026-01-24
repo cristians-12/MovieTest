@@ -4,7 +4,11 @@ import MainLayout from "@/app/layouts/MainLayout";
 import Paginator from "./Paginator";
 import MovieList from "./MovieList";
 
-export default function MainContainer({ data, genre }) {
+interface Props {
+    data: any;
+}
+
+export default function MainContainer({ data }: Props) {
 
     return (
         <MainLayout>
