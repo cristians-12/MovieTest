@@ -1,6 +1,6 @@
 import React from "react";
 import MovieCard from "./includes/MovieCard";
-import { DataFetch, MoviesResponse, MovieType } from "@/types/movie/movie.type";
+import { MoviesResponse, MovieType } from "@/types/movie/movie.type";
 
 export default function MovieList({ data }: { data: MoviesResponse }) {
   console.log(data);

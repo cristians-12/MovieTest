@@ -3,7 +3,7 @@
 import MainLayout from "@/app/layouts/MainLayout";
 import Paginator from "./Paginator";
 import MovieList from "./MovieList";
-import { MoviesResponse, MovieType } from "@/types/movie/movie.type";
+import { MoviesResponse } from "@/types/movie/movie.type";
 
 interface Props {
     data:MoviesResponse;
