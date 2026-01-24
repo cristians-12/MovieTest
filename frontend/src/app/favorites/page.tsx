@@ -2,12 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
-import { Movie } from "@/types/movie/movie.type";
+import { MovieType } from "@/types/movie/movie.type";
 import MovieCard from "@/components/includes/MovieCard";
 
-const fetchFavorites = async (favoriteIds: number[]): Promise<Movie[]> => {
-  const favoritesData: Movie[] = [];
-
+const fetchFavorites = async (favoriteIds: number[]): Promise<MovieType[]> => {
+  const favoritesData: MovieType[] = [];
   for (const id of favoriteIds) {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${id}?&language=en-US`,
@@ -29,7 +28,7 @@ const fetchFavorites = async (favoriteIds: number[]): Promise<Movie[]> => {
 
 export default function Favorites() {
   const { user, checkOutUser } = useAuthContext();
-  const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
+  const [favoriteMovies, setFavoriteMovies] = useState<MovieType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
