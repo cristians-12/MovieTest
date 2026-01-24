@@ -3,7 +3,7 @@ export async function fetchMovie(id: number) {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_AUTH_KEY}`
+            Authorization: `Bearer ${process.env.API_AUTH_KEY}`
         }
     };
 
