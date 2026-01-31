@@ -1,11 +1,11 @@
-import { Movie } from "@/types/movie/movie.type";
+import { MovieType } from "@/types/movie/movie.type";
 import { create } from "zustand";
 
 type Usuario = {
   nombre: string;
   setNombre: (valor: string) => void;
-  favoritos: Movie[];
-  setFavoritos: (valor: Movie) => void;
+  favoritos: MovieType[];
+  setFavoritos: (valor: MovieType) => void;
 };
 
 const useUsuarioStore = create<Usuario>()((set) => ({
