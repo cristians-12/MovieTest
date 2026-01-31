@@ -5,10 +5,22 @@ import { FaRegUserCircle } from "react-icons/fa";
 import RegisterModal from "./RegisterModal";
 import { useAuthContext } from "@/app/context/AuthContext";
 import useNavbar from "@/app/hooks/navbar/useNavbar";
+import { useRouter, useSearchParams } from "next/navigation";
 export default function NavBar() {
   const { handlePop, pop, handlePopular } = useNavbar();
 
   const { isAuthenticated, logOut, user } = useAuthContext();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const currentLang = searchParams.get("language") || "es-CO";
+
+  const handleLanguage = (lang: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("language", lang);
+    router.push(`?${params.toString()}`);
+  };
+
 
   return (
     <>
@@ -51,6 +63,19 @@ export default function NavBar() {
             </div>
           )}
         </div>
+        <select
+          className="bg-orange-500 text-white font-bold py-1 px-2 rounded-lg outline-none focus:ring-2 focus:ring-orange-300 transition-all cursor-pointer text-sm"
+          name="languages"
+          id="language-select"
+          value={currentLang}
+          onChange={(e) => handleLanguage(e.target.value)}
+        >
+          <option value="es-CO">ES (CO)</option>
+          <option value="es-ES">ES (ES)</option>
+          <option value="en-US">EN (US)</option>
+          <option value="en-GB">EN (GB)</option>
+          <option value="pt-BR">PT (BR)</option>
+        </select>
       </nav>
       {pop && <RegisterModal handlePop={handlePop} />}
     </>
