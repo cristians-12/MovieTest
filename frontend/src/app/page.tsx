@@ -1,12 +1,16 @@
+// app/page.tsx
 import MainContainer from "@/components/main-container";
-import { headers } from "next/headers";
 
-export default async function Home() {
-  const headersList = headers();
-  const host = headersList.get("host");
+export default async function Home({ 
+  searchParams 
+}: { 
+  searchParams: { page?: string, query?: string } 
+}) {
+  const currentPage = searchParams.page || "1";
+  const searchQuery = searchParams.query || "";
 
-  const res = await fetch(`http://${host}/api/movie`, {
-    cache: "force-cache",
+  const res = await fetch(`http://localhost:3000/api/movie?page=${currentPage}&query=${searchQuery}`, {
+    next: { revalidate: 60 }, 
   });
 
   const data = await res.json();
