@@ -1,5 +1,5 @@
-// app/page.tsx
 import MainContainer from "@/components/main-container";
+import { getMovies } from "@/lib/getMovies"; // Importa la función
 
 export default async function Home({ 
   searchParams 
@@ -9,11 +9,7 @@ export default async function Home({
   const currentPage = searchParams.page || "1";
   const searchQuery = searchParams.query || "";
 
-  const res = await fetch(`http://localhost:3000/api/movie?page=${currentPage}&query=${searchQuery}`, {
-    next: { revalidate: 60 }, 
-  });
-
-  const data = await res.json();
+  const data = await getMovies(currentPage, searchQuery);
 
   return <MainContainer data={data} />;
 }
