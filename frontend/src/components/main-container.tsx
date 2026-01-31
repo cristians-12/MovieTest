@@ -4,8 +4,6 @@ import MainLayout from "@/app/layouts/MainLayout";
 import Paginator from "./Paginator";
 import MovieList from "./MovieList";
 import { MoviesResponse } from "@/types/movie/movie.type";
-import { useState } from "react";
-import useAppStore from "@/store/appStore";
 
 interface Props {
     data: MoviesResponse;
