@@ -4,8 +4,8 @@ import React from "react";
 import CircleProgress from "../CircleProgress";
 import { useAuthContext } from "@/app/context/AuthContext";
 import { FaHeart } from "react-icons/fa";
-import { Movie } from "@/types/movie/movie.type";
 import { imageLink } from "@/utils/constants";
+import { MovieType } from "@/types/movie/movie.type";
 
 const handleAddFavorite = async (movieId: number, id: string) => {
   try {
@@ -32,7 +32,7 @@ const handleAddFavorite = async (movieId: number, id: string) => {
   }
 };
 
-const MovieCard = ({ e }: { e: Movie }) => {
+const MovieCard = ({ e }: { e: MovieType }) => {
   const { isAuthenticated, user } = useAuthContext();
   // const [isFavorite, setIsFavorite] = useState(false);
 
