@@ -6,6 +6,8 @@ import { useAuthContext } from "@/app/context/AuthContext";
 import { FaHeart } from "react-icons/fa";
 import { imageLink, img_placeholder } from "@/utils/constants";
 import { MovieType } from "@/types/movie/movie.type";
+import { formatDate } from "@/utils/formatDate";
+import Cookies from "js-cookie";
 
 const handleAddFavorite = async (movieId: number, id: string) => {
   try {
@@ -37,6 +39,8 @@ const handleAddFavorite = async (movieId: number, id: string) => {
 const MovieCard = ({ e }: { e: MovieType }) => {
   const { isAuthenticated, user } = useAuthContext();
 
+  const language = Cookies.get("NEXT_LOCALE") || "es-CO";
+
   const handleClick = () => {
     if (isAuthenticated && user) {
       handleAddFavorite(e.id, user._id);
@@ -64,7 +68,7 @@ const MovieCard = ({ e }: { e: MovieType }) => {
       <span className="font-bold whitespace-nowrap text-ellipsis overflow-hidden w-52 my-5">
         {e.title}
       </span>
-      <span>{e.release_date}</span>
+      <span>{formatDate(e.release_date, language)}</span>
       <div className="flex items-center gap-10">
         <CircleProgress width={50} score={e.vote_average} />
         {isAuthenticated && user ? (

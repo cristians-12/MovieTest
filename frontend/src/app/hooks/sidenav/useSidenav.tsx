@@ -16,6 +16,7 @@ const useSidenav = () => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", "1");
     params.set("genre", genre.id.toString());
+    params.delete("query");
     router.push(`/?${params.toString()}`);
     setVisible(!visible);
   };
