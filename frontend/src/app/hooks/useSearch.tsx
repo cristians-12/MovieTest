@@ -1,32 +1,48 @@
-import useAppStore from "@/store/appStore";
 import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { searchMoviesAction } from "@/lib/actions";
 
 const useSearch = () => {
   const [query, setQuery] = useState<string>("");
-  const { changeUrl, changeGenre, genre } = useAppStore();
+  const [results, setResults] = useState<any[]>([]); // Para guardar resultados rápidos
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleSearch = () => {
-    changeUrl(`https://api.themoviedb.org/3/search/movie?query=${query}`);
-    changeGenre({ ...genre, tag: query });
-  };
-  const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value == "" || e.target.value.trim == null) {
-      changeUrl(`https://api.themoviedb.org/3/movie/popular?language=en-US`);
+    const params = new URLSearchParams(searchParams.toString());
+    if (query.trim()) {
+      params.set("query", query);
+      params.set("page", "1");
     } else {
-      setQuery(e.target.value);
+      params.delete("query");
     }
+    router.push(`/?${params.toString()}`);
+  };
+
+  const handleQuickSearch = async () => {
+    if (!query.trim()) return;
+    
+    const response = await searchMoviesAction(query);
+    if (response.success) {
+      setResults(response.data.results);
+      console.log("Resultados obtenidos vía Server Action:", response.data.results);
+    }
+  };
+
+  const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
   };
 
   const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key == "Enter") {
-      handleSearch();
-    }
+    if (e.key === "Enter") handleSearch();
   };
 
-  return {
-    handleQuery,
-    handleSearch,
-    handleKeydown,
+  return { 
+    handleQuery, 
+    handleSearch, 
+    handleKeydown, 
+    handleQuickSearch,
+    results 
   };
 };
 

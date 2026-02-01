@@ -4,18 +4,19 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { tags } from "@/utils/constants";
+import { useState } from "react";
 
 export default function SideNav() {
   const { handleQuery, handleSearch, handleKeydown } = useSearch();
-
   const { visible, handleVisibility, handleTag } = useSidenav();
+
+
 
   return (
     <>
       <div
-        className={`fixed left-0 bg-gray-900 lg:w-[20vw] w-full ${
-          visible ? null : "hidden"
-        } lg:block z-20 px-5 lg:top-[7%] top-[6%] py-10 h-full`}
+        className={`fixed left-0 bg-gray-900 lg:w-[20vw] w-full ${visible ? null : "hidden"
+          } lg:block z-20 px-5 lg:top-[7%] top-[6%] py-10 h-full`}
       >
         <div className="flex justify-between">
           <p className="lg:text-[1.1vw]">Search</p>
