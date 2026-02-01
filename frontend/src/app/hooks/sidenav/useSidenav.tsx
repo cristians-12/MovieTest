@@ -1,22 +1,22 @@
 import useAppStore from "@/store/appStore";
-import { Genre } from "@/types/movie/movie.type";
+import { GenreType } from "@/types/movie/genre.type";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const useSidenav = () => {
   const [visible, setVisible] = useState(false);
-
-  const { changeUrl, changeGenre, initialPage } = useAppStore();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleVisibility = () => {
     setVisible(!visible);
   };
 
-  const handleTag = (genre: Genre) => {
-    changeGenre(genre);
-    initialPage();
-    changeUrl(
-      `https://api.themoviedb.org/3/discover/movie?with_genres=${genre.id}`
-    );
+  const handleTag = (genre: GenreType) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", "1");
+    params.set("genre", genre.id.toString());
+    router.push(`/?${params.toString()}`);
     setVisible(!visible);
   };
 
