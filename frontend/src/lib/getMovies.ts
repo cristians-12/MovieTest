@@ -19,3 +19,20 @@ export async function getMovies(page: string, query: string, language: string, g
 
     return res.json();
 }
+
+export async function getTags(language: string) {
+    let url = `${process.env.BASE_URL}/genre/movie/list?language=${language}`;
+
+
+    const res = await fetch(url, {
+        headers: {
+            Authorization: `Bearer ${process.env.API_AUTH_KEY}`,
+            accept: "application/json",
+        },
+        next: { revalidate: 60 }
+    });
+
+    console.log('genres', res);
+
+    return res.json();
+}

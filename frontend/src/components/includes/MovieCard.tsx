@@ -4,7 +4,7 @@ import React from "react";
 import CircleProgress from "../CircleProgress";
 import { useAuthContext } from "@/app/context/AuthContext";
 import { FaHeart } from "react-icons/fa";
-import { imageLink } from "@/utils/constants";
+import { imageLink, img_placeholder } from "@/utils/constants";
 import { MovieType } from "@/types/movie/movie.type";
 
 const handleAddFavorite = async (movieId: number, id: string) => {
@@ -32,7 +32,7 @@ const handleAddFavorite = async (movieId: number, id: string) => {
   }
 };
 
-const no_poster = 'https://media.istockphoto.com/id/1980276924/vector/no-photo-thumbnail-graphic-element-no-found-or-available-image-in-the-gallery-or-album-flat.jpg?s=612x612&w=0&k=20&c=ZBE3NqfzIeHGDPkyvulUw14SaWfDj2rZtyiKv3toItk=';
+
 
 const MovieCard = ({ e }: { e: MovieType }) => {
   const { isAuthenticated, user } = useAuthContext();
@@ -43,7 +43,7 @@ const MovieCard = ({ e }: { e: MovieType }) => {
     }
   };
 
-  const posterUrl = e.poster_path ? (imageLink + e.poster_path) : no_poster;
+  const posterUrl = e.poster_path ? (imageLink + e.poster_path) : img_placeholder;
 
   return (
     <div

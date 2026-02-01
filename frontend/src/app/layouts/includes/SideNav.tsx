@@ -3,10 +3,13 @@ import useSearch from "@/app/hooks/useSearch";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import { tags } from "@/utils/constants";
-import { useState } from "react";
+import { GenreType } from "@/types/movie/genre.type";
 
-export default function SideNav() {
+interface Props {
+  genres: GenreType[];
+}
+
+export default function SideNav({ genres }: Props) {
   const { handleQuery, handleSearch, handleKeydown } = useSearch();
   const { visible, handleVisibility, handleTag } = useSidenav();
 
@@ -39,13 +42,13 @@ export default function SideNav() {
         </div>
         <p className="mt-5 lg:text-[1.1vw]">Genres</p>
         <div className="bg-gray-900">
-          {tags.map((e, index) => (
+          {genres.map((e, index) => (
             <div
               onClick={() => handleTag(e)}
               className="cursor-pointer w-full hover:bg-slate-600 p-3"
               key={index}
             >
-              {e.tag}
+              {e.name}
             </div>
           ))}
         </div>

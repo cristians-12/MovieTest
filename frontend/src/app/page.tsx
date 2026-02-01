@@ -1,5 +1,5 @@
 import MainContainer from "@/components/main-container";
-import { getMovies } from "@/lib/getMovies"; // Importa la función
+import { getMovies, getTags } from "@/lib/getMovies"; // Importa la función
 import { cookies } from "next/headers";
 
 export default async function Home({
@@ -16,6 +16,10 @@ export default async function Home({
   const language = cookieStore.get('NEXT_LOCALE')?.value || "es-CO";
 
   const data = await getMovies(currentPage, searchQuery, language, genre);
+  const genresResponse = await getTags(language);
 
-  return <MainContainer data={data} />;
+  return <MainContainer
+    data={data}
+    genres={genresResponse}
+  />;
 }
