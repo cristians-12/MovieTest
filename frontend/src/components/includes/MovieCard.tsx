@@ -32,6 +32,8 @@ const handleAddFavorite = async (movieId: number, id: string) => {
   }
 };
 
+const no_poster = 'https://media.istockphoto.com/id/1980276924/vector/no-photo-thumbnail-graphic-element-no-found-or-available-image-in-the-gallery-or-album-flat.jpg?s=612x612&w=0&k=20&c=ZBE3NqfzIeHGDPkyvulUw14SaWfDj2rZtyiKv3toItk=';
+
 const MovieCard = ({ e }: { e: MovieType }) => {
   const { isAuthenticated, user } = useAuthContext();
 
@@ -40,6 +42,8 @@ const MovieCard = ({ e }: { e: MovieType }) => {
       handleAddFavorite(e.id, user._id);
     }
   };
+
+  const posterUrl = e.poster_path ? (imageLink + e.poster_path) : no_poster;
 
   return (
     <div
@@ -50,8 +54,11 @@ const MovieCard = ({ e }: { e: MovieType }) => {
         <Image
           className="rounded-tl-lg rounded-tr-lg object-cover"
           fill
-          src={imageLink + e.poster_path}
+          src={posterUrl}
           alt={e.title}
+          sizes="(max-width: 768px) 80vw, 20vw"
+          placeholder="blur"
+          blurDataURL="https://imgs.search.brave.com/8ebB1J_tyZLjCw_HRwRVpfkirqj9WS36-xGU4c4pQvg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/cGVuaXMtZW5sYXJn/ZW1lbnQtbWFnaWMt/djAtaDJwaHlmdzFt/NmJmMS5qcGc_d2lk/dGg9NjQwJmNyb3A9/c21hcnQmYXV0bz13/ZWJwJnM9OTU2MjY3/YTBiMzI3YzIzNTcx/NWM1ZGQzMmZhMmU4/MTU0YmNmOWQzYQ"
         />
       </Link>
       <span className="font-bold whitespace-nowrap text-ellipsis overflow-hidden w-52 my-5">

@@ -4,7 +4,7 @@ import { searchMoviesAction } from "@/lib/actions";
 
 const useSearch = () => {
   const [query, setQuery] = useState<string>("");
-  const [results, setResults] = useState<any[]>([]); // Para guardar resultados rápidos
+  const [results, setResults] = useState<any[]>([]);
   const router = useRouter();
   const searchParams = useSearchParams();
 
