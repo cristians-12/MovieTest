@@ -34,7 +34,6 @@ const handleAddFavorite = async (movieId: number, id: string) => {
 
 const MovieCard = ({ e }: { e: MovieType }) => {
   const { isAuthenticated, user } = useAuthContext();
-  // const [isFavorite, setIsFavorite] = useState(false);
 
   const handleClick = () => {
     if (isAuthenticated && user) {
@@ -44,16 +43,15 @@ const MovieCard = ({ e }: { e: MovieType }) => {
 
   return (
     <div
-      className="text-center flex flex-col items-center w-fit rounded-lg hover:scale-105 bg-gray-700 hover:bg-gray-800 cursor-pointer"
+      className="text-center flex flex-col items-center md:w-[20%] w-[80%] rounded-lg hover:scale-105 bg-gray-700 hover:bg-gray-800 cursor-pointer"
       key={e.id}
     >
-      <Link href={`movie/${e.id}`}>
+      <Link className="relative h-[400px] w-full" href={`movie/${e.id}`}>
         <Image
-          className="rounded-tl-lg rounded-tr-lg"
-          width={300}
-          height={200}
+          className="rounded-tl-lg rounded-tr-lg object-cover"
+          fill
           src={imageLink + e.poster_path}
-          alt="Poster image"
+          alt={e.title}
         />
       </Link>
       <span className="font-bold whitespace-nowrap text-ellipsis overflow-hidden w-52 my-5">

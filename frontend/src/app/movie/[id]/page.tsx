@@ -8,10 +8,16 @@ interface MoviePageProps {
   params: {
     id: number;
   };
+  searchParams: { page?: string, query?: string, language?: string, genre?: string }
 }
 
-export default async function MoviePage({ params }: MoviePageProps) {
+export default async function MoviePage({
+  searchParams,
+  params
+}: MoviePageProps) {
   const movie = await fetchMovie(params.id);
+
+  console.log(searchParams);
 
   if (!movie) {
     return <div>No encontramos ninguna película.</div>;
@@ -28,8 +34,9 @@ export default async function MoviePage({ params }: MoviePageProps) {
               width={300}
               height={450}
               className="w-full rounded-lg shadow-lg"
-              alt="Movie Poster"
+              alt={movie.title}
               src={`${imageLink + movie.poster_path}`}
+
             />
             <div className="bg-yellow-400 mt-5 text-center text-black font-bold py-2 rounded-lg cursor-pointer hover:bg-yellow-500 transition">
               Official Trailer
