@@ -47,42 +47,61 @@ export default async function MoviePage({
   }
 
   return (
-    <div className="pt-12 lg:pt-16">
-      <div className="relative lg:overflow-hidden lg:min-h-[75vh]">
-        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent z-20 h-[75vh]"></div>
+    <div className="pt-12 lg:pt-16 min-h-screen text-white">
+      {/* SECCIÓN HERO (CONTENEDOR RELATIVO) */}
+      <div className="relative w-full overflow-hidden flex flex-col justify-end">
 
-        <div className="lg:flex gap-10 absolute top-0 z-30 px-10 backdrop-blur-md pt-5 w-full">
-          <div className="lg:w-[20%] w-[100%]">
+        {/* FONDO (IMAGEN CON GRADIENTE) */}
+        <div className="absolute inset-0 z-10">
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-20"></div>
+          <Image
+            className="object-cover w-full h-full opacity-40 lg:opacity-100 blur-xl scale-110"
+            width={1920}
+            height={1080}
+            alt="Movie Backdrop"
+            src={`${imageLink + movie.backdrop_path}`}
+            priority
+          />
+        </div>
+
+        <div className="relative z-30 px-6 lg:px-10 py-10 lg:flex gap-10 items-start">
+          <div className="lg:w-[25%] w-full mb-6 lg:mb-0">
             <Image
               width={300}
               height={450}
-              className="w-full rounded-lg shadow-lg"
+              className="w-full rounded-lg shadow-2xl border border-white/10"
               alt={movie.title}
               src={`${imageLink + movie.poster_path}`}
             />
-            <div className="bg-yellow-400 mt-5 text-center text-black font-bold py-2 rounded-lg cursor-pointer hover:bg-yellow-500 transition">
+            <a
+              href="#trailer"
+              className="bg-yellow-400 mt-5 block text-center text-black font-bold py-2 rounded-lg cursor-pointer hover:bg-yellow-500 transition"
+            >
               Official Trailer
-            </div>
+            </a>
           </div>
+
           <div className="lg:w-[70%] w-full">
-            <h1 className="text-3xl lg:text-5xl font-bold mb-4">
+            <h1 className="text-3xl lg:text-5xl font-bold mb-2">
               {movie.title}
             </h1>
-            <p className="text-gray-400 mb-4">{movie.release_date}</p>
-            <h2 className="text-xl lg:text-2xl font-bold mt-8 mb-4">
-              Overview:
-            </h2>
-            <p className="text-gray-300 leading-relaxed">{movie.overview}</p>
+            <p className="text-gray-400 mb-6">{movie.release_date}</p>
+
+            <h2 className="text-xl lg:text-2xl font-bold mb-3">Overview:</h2>
+            <p className="text-gray-300 leading-relaxed text-sm lg:text-base">
+              {movie.overview}
+            </p>
+
             <div className="flex items-center font-extrabold mt-8">
-              <CircleProgress score={movie.vote_average} width={150} />
+              <CircleProgress score={movie.vote_average} width={80} />
               <span className="ml-4 text-lg">Users Score</span>
             </div>
-            <div className="flex justify-center overflow-x-scroll lg:overflow-auto mt-6 space-x-2">
-              {/* movie.genres ahora debería existir tras el await de fetchMovie */}
+
+            <div className="flex flex-wrap gap-2 mt-8">
               {movie.genres?.map((e: Genre) => (
                 <div
                   key={e.id}
-                  className="border border-yellow-500 cursor-pointer px-3 py-1 rounded-lg text-yellow-500 text-sm lg:text-base"
+                  className="border border-yellow-500 px-3 py-1 rounded-lg text-yellow-500 text-xs lg:text-sm"
                 >
                   {e.name}
                 </div>
@@ -90,32 +109,28 @@ export default async function MoviePage({
             </div>
           </div>
         </div>
-        <div className="absolute z-10 w-full min-h-[75vh]">
-          <Image
-            className="object-cover w-full h-[75vh]"
-            width={1920}
-            height={1080}
-            alt="Movie Backdrop"
-            src={`${imageLink + movie.backdrop_path}`}
-          />
-        </div>
       </div>
 
-      {videoKey && (
-        <div id="trailer" className="mt-16">
-          <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-yellow-500">Official Trailer</h3>
-          <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-            <iframe
-              className="absolute inset-0 w-full h-full"
-              src={`https://www.youtube.com/embed/${videoKey}?rel=0&modestbranding=1`}
-              title={`${movie.title} Trailer`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+
+      <div className="px-6 lg:px-10 pb-20">
+        {videoKey && (
+          <div id="trailer" className="mt-16 scroll-mt-20">
+            <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-yellow-500">Official Trailer</h3>
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src={`https://www.youtube.com/embed/${videoKey}?rel=0&modestbranding=1`}
+                title={`${movie.title} Trailer`}
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
-        </div>
-      )}
-      <h3 className="text-2xl lg:text-3xl font-bold mt-10">Recommendations:</h3>
+        )}
+
+        <h3 className="text-2xl lg:text-3xl font-bold mt-10 border-t border-white/10 pt-10">
+          Recommendations:
+        </h3>
+      </div>
     </div>
   );
 }
