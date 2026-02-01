@@ -32,8 +32,6 @@ export async function getTags(language: string) {
         next: { revalidate: 60 }
     });
 
-    console.log('genres', res);
-
     return res.json();
 }
 

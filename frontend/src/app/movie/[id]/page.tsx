@@ -41,8 +41,6 @@ export default async function MoviePage({
     videoKey = await getMovieVideo(Number(resolvedParams.id), "en-US");
   }
 
-  console.log(resolvedSearchParams);
-
   if (!movie) {
     return <div>No encontramos ninguna película.</div>;
   }
