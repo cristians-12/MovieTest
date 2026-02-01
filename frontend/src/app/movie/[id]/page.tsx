@@ -1,6 +1,7 @@
 // src/app/movie/[id]/page.tsx
 import CircleProgress from "@/components/CircleProgress";
 import { fetchMovie } from "@/components/server/useFetching";
+import { getMovieVideo } from "@/lib/getMovies";
 import { Genre } from "@/types/movie/movie.type";
 import { imageLink } from "@/utils/constants";
 import { cookies } from "next/headers";
@@ -32,6 +33,12 @@ export default async function MoviePage({
   const language = cookieStore.get('NEXT_LOCALE')?.value || "es-CO";
 
   const movie = await fetchMovie(Number(resolvedParams.id), language);
+
+  let videoKey = await getMovieVideo(Number(resolvedParams.id), language);
+
+  if (!videoKey && language !== "en-US") {
+    videoKey = await getMovieVideo(Number(resolvedParams.id), "en-US");
+  }
 
   console.log(resolvedSearchParams);
 
@@ -93,6 +100,21 @@ export default async function MoviePage({
           />
         </div>
       </div>
+
+      {videoKey && (
+        <div id="trailer" className="mt-16">
+          <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-yellow-500">Official Trailer</h3>
+          <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src={`https://www.youtube.com/embed/${videoKey}?rel=0&modestbranding=1`}
+              title={`${movie.title} Trailer`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
       <h3 className="text-2xl lg:text-3xl font-bold mt-10">Recommendations:</h3>
     </div>
   );

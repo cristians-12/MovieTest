@@ -70,7 +70,7 @@ export default function NavBar() {
             </div>
           )}
           <select
-            className="bg-orange-500 text-white font-bold py-1 px-2 rounded-lg outline-none focus:ring-2 focus:ring-orange-300 transition-all cursor-pointer text-sm"
+            className="bg-yellow-400 text-white font-bold py-1 px-2 rounded-lg outline-none focus:ring-2 focus:ring-orange-300 transition-all cursor-pointer text-sm"
             name="languages"
             id="language-select"
             value={currentLang}

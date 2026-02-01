@@ -65,20 +65,22 @@ const MovieCard = ({ e }: { e: MovieType }) => {
           blurDataURL="https://imgs.search.brave.com/8ebB1J_tyZLjCw_HRwRVpfkirqj9WS36-xGU4c4pQvg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/cGVuaXMtZW5sYXJn/ZW1lbnQtbWFnaWMt/djAtaDJwaHlmdzFt/NmJmMS5qcGc_d2lk/dGg9NjQwJmNyb3A9/c21hcnQmYXV0bz13/ZWJwJnM9OTU2MjY3/YTBiMzI3YzIzNTcx/NWM1ZGQzMmZhMmU4/MTU0YmNmOWQzYQ"
         />
       </Link>
-      <span className="font-bold whitespace-nowrap text-ellipsis overflow-hidden w-52 my-5">
+      <p className="font-bold whitespace-nowrap text-ellipsis overflow-hidden w-52 my-5">
         {e.title}
-      </span>
-      <span>{formatDate(e.release_date, language)}</span>
-      <div className="flex items-center gap-10">
-        <CircleProgress width={50} score={e.vote_average} />
-        {isAuthenticated && user ? (
-          <div onClick={handleClick}>
-            <FaHeart
-              size={35}
-              fill={`${user?.favorites.includes(e.id) ? "red" : "white"}`}
-            />
-          </div>
-        ) : null}
+      </p>
+      <div className="flex items-center gap-2">
+        <p>{formatDate(e.release_date, language)}</p>
+        <div className="flex items-center gap-10">
+          <CircleProgress width={80} score={e.vote_average} />
+          {isAuthenticated && user ? (
+            <div onClick={handleClick}>
+              <FaHeart
+                size={35}
+                fill={`${user?.favorites.includes(e.id) ? "red" : "white"}`}
+              />
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   );

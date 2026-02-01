@@ -18,7 +18,7 @@ export default function SideNav({ genres }: Props) {
   return (
     <>
       <div
-        className={`fixed left-0 bg-gray-900 lg:w-[20vw] w-full ${visible ? null : "hidden"
+        className={`fixed left-0 bg-black lg:w-[20vw] w-full ${visible ? null : "hidden"
           } lg:block z-20 px-5 lg:top-[7%] top-[6%] py-10 h-full`}
       >
         <div className="flex justify-between">
@@ -32,7 +32,7 @@ export default function SideNav({ genres }: Props) {
             onChange={handleQuery}
             onKeyDown={handleKeydown}
             type="text"
-            className="w-full bg-gray-950 py-3 px-3"
+            className="w-full bg-black py-3 px-3"
             placeholder="keywords"
           />
           <FaSearch
@@ -41,7 +41,7 @@ export default function SideNav({ genres }: Props) {
           />
         </div>
         <p className="mt-5 lg:text-[1.1vw]">Genres</p>
-        <div className="bg-gray-900">
+        <div className="">
           {genres.map((e, index) => (
             <div
               onClick={() => handleTag(e)}

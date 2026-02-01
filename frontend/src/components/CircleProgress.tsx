@@ -19,7 +19,7 @@ const CircleProgress: React.FC<CircleProgressProps> = ({ score, width }) => {
                     cy={center}
                     r={radius}
                     stroke={score > 6 ? '#285129' : '#5b370e'}
-                    strokeWidth={width / 15}
+                    strokeWidth={width / 10}
                     fill="transparent"
                 />
                 <circle
@@ -28,7 +28,7 @@ const CircleProgress: React.FC<CircleProgressProps> = ({ score, width }) => {
                     r={radius}
 
                     stroke={score > 6 ? 'green' : '#d17812'}
-                    strokeWidth={width / 15}
+                    strokeWidth={width / 10}
                     fill="transparent"
                     strokeDasharray={circumference}
                     strokeDashoffset={offset}

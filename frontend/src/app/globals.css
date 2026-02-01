@@ -3,21 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #4a4a4a;
+  --background: #0f172a; 
+  --foreground: #ededed;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #5a5959;
+    --background: #0f172a;
     --foreground: #ededed;
   }
 }
 
 body {
-  color:  white;
+  color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), sans-serif;
+  overflow-x: hidden;
 }
 
 @layer utilities {
@@ -26,6 +27,7 @@ body {
   }
 }
 
-*{
-  transition: all ease-in-out 0.15s;
+
+* {
+  transition: background-color 0.15s ease-in-out, transform 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }

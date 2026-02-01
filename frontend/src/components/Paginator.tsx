@@ -11,7 +11,7 @@ interface PaginatorProps {
 const Paginator: React.FC<PaginatorProps> = ({ pages }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
+
   const currentPage = Number(searchParams.get("page")) || 1;
 
   const handlePageChange = (newPage: number) => {
@@ -24,8 +24,8 @@ const Paginator: React.FC<PaginatorProps> = ({ pages }) => {
     <div>
       <div className="flex justify-center gap-5 items-center mt-10">
         {currentPage > 1 && (
-          <div 
-            onClick={() => handlePageChange(currentPage - 1)} 
+          <div
+            onClick={() => handlePageChange(currentPage - 1)}
             className="bg-black p-3 cursor-pointer hover:bg-zinc-800 transition-colors"
           >
             <IoIosArrowBack />
@@ -33,12 +33,12 @@ const Paginator: React.FC<PaginatorProps> = ({ pages }) => {
         )}
 
         <div className="bg-black py-2 px-4 select-none">
-          Página {currentPage} de {pages}
+          {currentPage} de {pages}
         </div>
 
         {currentPage < pages && (
-          <div 
-            onClick={() => handlePageChange(currentPage + 1)} 
+          <div
+            onClick={() => handlePageChange(currentPage + 1)}
             className="bg-black p-3 cursor-pointer hover:bg-zinc-800 transition-colors"
           >
             <IoIosArrowForward />
