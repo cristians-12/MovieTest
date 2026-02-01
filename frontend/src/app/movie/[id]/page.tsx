@@ -117,7 +117,7 @@ export default async function MoviePage({
         {videoKey && (
           <div id="trailer" className="md:mt-5 scroll-mt-20">
             {/* <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-yellow-500">Official Trailer</h3> */}
-            <div className="relative w-full aspect-video overflow-hidden shadow-2xl border border-white/10">
+            <div className="relative w-full aspect-video overflow-hidden shadow-2xl">
               <iframe
                 className="absolute inset-0 w-full h-full"
                 src={`https://www.youtube.com/embed/${videoKey}?rel=0&modestbranding=1&autoplay=1&mute=1&loop=1`}
