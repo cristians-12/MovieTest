@@ -6,6 +6,9 @@ import RegisterModal from "./RegisterModal";
 import { useAuthContext } from "@/app/context/AuthContext";
 import useNavbar from "@/app/hooks/navbar/useNavbar";
 import { useRouter, useSearchParams } from "next/navigation";
+import { changeLanguage } from "@/utils/language";
+import Cookies from 'js-cookie';
+import { useEffect, useState } from "react";
 export default function NavBar() {
   const { handlePop, pop, handlePopular } = useNavbar();
 
@@ -13,12 +16,21 @@ export default function NavBar() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const currentLang = searchParams.get("language") || "es-CO";
+  // const currentLang = searchParams.get("language") || "es-CO";
+  // const currentLang = Cookies.get('NEXT_LOCALE') || "es-CO";
+
+  const [currentLang, setCurrentLang] = useState("es-CO");
+
+  useEffect(() => {
+    const savedLang = Cookies.get('NEXT_LOCALE');
+    if (savedLang) {
+      setCurrentLang(savedLang);
+    }
+  }, []);
 
   const handleLanguage = (lang: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("language", lang);
-    router.push(`?${params.toString()}`);
+    // const params = new URLSearchParams(searchParams.toString());
+    changeLanguage(lang);
   };
 
 

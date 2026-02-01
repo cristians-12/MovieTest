@@ -1,23 +1,39 @@
+// src/app/movie/[id]/page.tsx
 import CircleProgress from "@/components/CircleProgress";
 import { fetchMovie } from "@/components/server/useFetching";
 import { Genre } from "@/types/movie/movie.type";
 import { imageLink } from "@/utils/constants";
+import { cookies } from "next/headers";
 import Image from "next/image";
 
+// 1. Las interfaces ahora deben reflejar que son Promesas
 interface MoviePageProps {
-  params: {
-    id: number;
-  };
-  searchParams: { page?: string, query?: string, language?: string, genre?: string }
+  params: Promise<{
+    id: string; // Next.js entrega los params como string por defecto
+  }>;
+  searchParams: Promise<{
+    page?: string;
+    query?: string;
+    language?: string;
+    genre?: string
+  }>;
 }
 
 export default async function MoviePage({
   searchParams,
   params
 }: MoviePageProps) {
-  const movie = await fetchMovie(params.id);
 
-  console.log(searchParams);
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
+
+  const cookieStore = await cookies();
+
+  const language = cookieStore.get('NEXT_LOCALE')?.value || "es-CO";
+
+  const movie = await fetchMovie(Number(resolvedParams.id), language);
+
+  console.log(resolvedSearchParams);
 
   if (!movie) {
     return <div>No encontramos ninguna película.</div>;
@@ -36,7 +52,6 @@ export default async function MoviePage({
               className="w-full rounded-lg shadow-lg"
               alt={movie.title}
               src={`${imageLink + movie.poster_path}`}
-
             />
             <div className="bg-yellow-400 mt-5 text-center text-black font-bold py-2 rounded-lg cursor-pointer hover:bg-yellow-500 transition">
               Official Trailer
@@ -56,7 +71,8 @@ export default async function MoviePage({
               <span className="ml-4 text-lg">Users Score</span>
             </div>
             <div className="flex justify-center overflow-x-scroll lg:overflow-auto mt-6 space-x-2">
-              {movie.genres.map((e: Genre) => (
+              {/* movie.genres ahora debería existir tras el await de fetchMovie */}
+              {movie.genres?.map((e: Genre) => (
                 <div
                   key={e.id}
                   className="border border-yellow-500 cursor-pointer px-3 py-1 rounded-lg text-yellow-500 text-sm lg:text-base"

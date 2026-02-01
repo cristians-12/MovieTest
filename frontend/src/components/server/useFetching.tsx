@@ -1,4 +1,4 @@
-export async function fetchMovie(id: number) {
+export async function fetchMovie(id: number, language: string) {
     const options = {
         method: 'GET',
         headers: {
@@ -7,9 +7,15 @@ export async function fetchMovie(id: number) {
         }
     };
 
+    let url = `https://api.themoviedb.org/3/movie/${id}?`;
+
+    if (language) {
+        url += `&language=${language}`;
+    }
+
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options);
-        const data = await response.json(); 
+        const response = await fetch(url, options);
+        const data = await response.json();
         return data;
     } catch (error) {
         console.error('Hubo un error: ', error);

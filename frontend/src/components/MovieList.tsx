@@ -3,7 +3,7 @@ import MovieCard from "./includes/MovieCard";
 import { MoviesResponse, MovieType } from "@/types/movie/movie.type";
 
 export default function MovieList({ data }: { data: MoviesResponse }) {
-  console.log(data);
+
   return (
     <main>
       <div className="flex flex-wrap gap-10 justify-center lg:overflow-x-auto lg:py-16">
