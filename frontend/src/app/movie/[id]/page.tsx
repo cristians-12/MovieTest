@@ -4,6 +4,7 @@ import { fetchMovie } from "@/components/server/useFetching";
 import { getMovieVideo } from "@/lib/getMovies";
 import { Genre } from "@/types/movie/movie.type";
 import { imageLink } from "@/utils/constants";
+import { formatDate } from "@/utils/formatDate";
 import { cookies } from "next/headers";
 import Image from "next/image";
 
@@ -85,7 +86,7 @@ export default async function MoviePage({
             <h1 className="text-3xl lg:text-5xl font-bold mb-2">
               {movie.title}
             </h1>
-            <p className="text-gray-400 mb-6">{movie.release_date}</p>
+            <p className="text-yellow-400 mb-6 text-2xl">{formatDate(movie.release_date, language)}</p>
 
             <h2 className="text-xl lg:text-2xl font-bold mb-3">Overview:</h2>
             <p className="text-gray-300 leading-relaxed text-sm lg:text-base">
