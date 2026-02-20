@@ -33,7 +33,7 @@ export default function SideNav({ genres }: Props) {
             onKeyDown={handleKeydown}
             type="text"
             className="w-full bg-black py-3 px-3"
-            placeholder="keywords"
+            placeholder="Search..."
           />
           <FaSearch
             onClick={handleSearch}
