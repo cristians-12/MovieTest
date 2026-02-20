@@ -90,11 +90,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             console.log(data)
             localStorage.setItem('user', JSON.stringify(data));
             success()
+            setisAuthenticated(true);
         } catch (error) {
             console.error(error);
         }
 
-        setisAuthenticated(true);
     };
 
     useEffect(() => {

@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${poppins.variable} antialiased font-sans`}>
+      <body className={`${poppins.variable} antialiased font-sans`} suppressHydrationWarning>
         <AuthProvider>
           <Toaster />
           <Suspense fallback={<div className="h-16 bg-black" />}>

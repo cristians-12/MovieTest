@@ -19,10 +19,10 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ handlePop }) => {
                 <div className='h-full lg:w-[35%] flex flex-col items-center text-black'>
                     <div className='flex bg-gray-500 rounded-md  mt-10 font-bold'>
                         <div onClick={() => setActive(!active)} className={`px-7 py-3 rounded-md cursor-pointer  ${active ? 'bg-[#F0B90B]' : ''}`}>
-                            Sign Up
+                            Registrate
                         </div>
                         <div onClick={() => setActive(!active)} className={`px-7 py-3 rounded-md cursor-pointer  ${!active ? 'bg-[#F0B90B]' : ''}`} >
-                            Login
+                            Iniciar sesion
                         </div>
                     </div>
                     <div className='w-full mt-20'>
@@ -45,7 +45,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ handlePop }) => {
                                         <input type="email" onChange={handleEmail} className='w-full px-2 py-3 rounded-lg' placeholder='Email' />
                                         <input type="email" onChange={handlePass} className='w-full mt-2 px-2 py-3 rounded-lg' placeholder='Password' />
                                         <div onClick={handleLogin} className='bg-[#F0B90B] flex justify-center items-center gap-3 text-center mt-6 text-black font-bold py-3 rounded-md cursor-pointer hover:bg-orange-400'>
-                                            Continue
+                                            Continuar
                                             <MdLocalMovies />
                                         </div>
                                     </div>

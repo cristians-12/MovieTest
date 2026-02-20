@@ -59,6 +59,10 @@ const useRegister = () => {
     };
 
     const handleLogin = async () => {
+        if (!email || !pass) {
+            errorToast();
+            return;
+        }
         loginUser(email,pass)
     }
 
