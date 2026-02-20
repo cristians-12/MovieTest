@@ -41,12 +41,7 @@ export default function NavBar() {
               src={"/images/logo.png"}
             />
           </Link>
-          <div
-            onClick={handlePopular}
-            className="cursor-pointer lg:block hidden"
-          >
-            Popular
-          </div>
+
           {isAuthenticated ? (
             <Link
               href={"/favorites"}
