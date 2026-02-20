@@ -55,7 +55,7 @@ export default function SideNav({ genres }: Props) {
       </div>
       <div
         onClick={handleVisibility}
-        className="lg:hidden fixed bottom-5 bg-gray-900 px-5 py-5 rounded-full left-5"
+        className="lg:hidden fixed bottom-5 bg-gray-900 px-5 py-5 rounded-full left-5 z-50"
       >
         <FaBarsStaggered />
       </div>
