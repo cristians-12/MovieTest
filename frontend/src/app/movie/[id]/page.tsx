@@ -1,4 +1,3 @@
-// src/app/movie/[id]/page.tsx
 import CircleProgress from "@/components/CircleProgress";
 import { fetchMovie } from "@/components/server/useFetching";
 import { getMovieVideo } from "@/lib/getMovies";
@@ -7,11 +6,11 @@ import { imageLink } from "@/utils/constants";
 import { formatDate } from "@/utils/formatDate";
 import { cookies } from "next/headers";
 import Image from "next/image";
+import Link from "next/link";
 
-// 1. Las interfaces ahora deben reflejar que son Promesas
 interface MoviePageProps {
   params: Promise<{
-    id: string; // Next.js entrega los params como string por defecto
+    id: string;
   }>;
   searchParams: Promise<{
     page?: string;
@@ -47,10 +46,7 @@ export default async function MoviePage({
 
   return (
     <div className="pt-12 lg:pt-16 min-h-screen text-white">
-      {/* SECCIÓN HERO (CONTENEDOR RELATIVO) */}
       <div className="relative w-full overflow-hidden flex flex-col justify-end">
-
-        {/* FONDO (IMAGEN CON GRADIENTE) */}
         <div className="absolute inset-0 z-10">
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-20"></div>
           <Image
@@ -86,7 +82,7 @@ export default async function MoviePage({
             </h1>
             <p className="text-yellow-400 mb-6 text-2xl">{formatDate(movie.release_date, language)}</p>
 
-            <h2 className="text-xl lg:text-2xl font-bold mb-3">Overview:</h2>
+            {/* <h2 className="text-xl lg:text-2xl font-bold mb-3">Overview:</h2> */}
             <p className="text-gray-300 leading-relaxed text-sm lg:text-base">
               {movie.overview}
             </p>
@@ -98,12 +94,13 @@ export default async function MoviePage({
 
             <div className="flex flex-wrap gap-2 mt-8">
               {movie.genres?.map((e: Genre) => (
-                <div
+                <Link
                   key={e.id}
-                  className="border border-yellow-500 px-3 py-1 rounded-lg text-yellow-500 text-xs lg:text-sm"
+                  href={`/?genre=${e.id}`}
+                  className="border border-yellow-500 px-3 py-1 rounded-lg text-yellow-500 text-xs lg:text-sm hover:bg-yellow-500 hover:text-black transition cursor-pointer"
                 >
                   {e.name}
-                </div>
+                </Link>
               ))}
             </div>
           </div>
